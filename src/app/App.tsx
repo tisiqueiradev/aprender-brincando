@@ -1,32 +1,28 @@
-import Menu from '../components/layout/Menu'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css'
+import Home from "./pages/Home";
+import Math from "./pages/Math"
+import Portuguese from "./pages/Portuguese";
+import English from "./pages/English";
+import Geo from "./pages/Geo";
+import Science from "./pages/Science";
+import Arts from "./pages/Arts";
 
 function App() {
   return (
-    <div className="flex items-center justify-center min-h-screen my-8">
-      <div className="flex flex-col items-center gap-4">
-        <Menu
-          label="Português"
-          themeColor="portuguese"
-        />
-
-        <Menu
-          label="Matemática"
-          themeColor="math"
-        />
-
-        <Menu
-          label="Geografia"
-          themeColor="geo"
-        />
-
-        <Menu
-          label="Inglês"
-          themeColor="english"
-        />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/portuguese" element={<Portuguese />} />
+        <Route path="/math" element={<Math />} />
+        <Route path="/english" element={<English />} />
+        <Route path="/geo" element={<Geo />} />
+        <Route path="/science" element={<Science />} />
+        <Route path="/arts" element={<Arts />} />
+      </Routes>
+    </BrowserRouter>
   )
+
 }
 
 export default App

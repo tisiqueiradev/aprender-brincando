@@ -1,68 +1,70 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap');
-@import "tailwindcss";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  --color-success: hsl(var(--success));
-  --color-success-foreground: hsl(var(--success-foreground));
-  --color-warning: hsl(var(--warning));
-  --color-warning-foreground: hsl(var(--warning-foreground));
-  --color-math: hsl(var(--math));
-  --color-math-foreground: hsl(var(--math-foreground));
-  --color-portuguese: hsl(var(--portuguese));
-  --color-portuguese-foreground: hsl(var(--portuguese-foreground));
-}
-
-/* 🎨 Suas variáveis */
 @layer base {
   :root {
-    --background: 40 60% 97%;
-    --foreground: 240 20% 20%;
+    /* ===== BASE INFANTIL CLARO ===== */
+
+    --background: 200 100% 97%;
+    --foreground: 230 25% 25%;
+
     --card: 0 0% 100%;
-    --card-foreground: 240 20% 20%;
+    --card-foreground: 230 25% 25%;
+
     --popover: 0 0% 100%;
-    --popover-foreground: 240 20% 20%;
-    --primary: 25 95% 55%;
+    --popover-foreground: 230 25% 25%;
+
+    --primary: 280 85% 65%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 210 70% 55%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 40 30% 92%;
-    --muted-foreground: 240 10% 45%;
-    --accent: 150 60% 45%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 75% 55%;
+
+    --secondary: 190 80% 90%;
+    --secondary-foreground: 230 25% 25%;
+
+    --muted: 200 60% 92%;
+    --muted-foreground: 230 15% 45%;
+
+    --accent: 45 100% 65%;
+    --accent-foreground: 230 25% 25%;
+
+    --destructive: 0 85% 65%;
     --destructive-foreground: 0 0% 100%;
-    --border: 40 25% 88%;
-    --input: 40 25% 88%;
-    --ring: 25 95% 55%;
-    --radius: 1rem;
-    --success: 150 60% 45%;
+
+    --border: 200 60% 88%;
+    --input: 200 60% 88%;
+    --ring: 280 85% 65%;
+
+    --radius: 1.25rem;
+
+    /* ===== FEEDBACK ===== */
+
+    --success: 145 70% 55%;
     --success-foreground: 0 0% 100%;
-    --warning: 45 95% 55%;
-    --warning-foreground: 240 20% 20%;
-    --math: 210 70% 55%;
+
+    --warning: 40 100% 60%;
+    --warning-foreground: 230 25% 25%;
+
+    /* ===== MATÉRIAS ===== */
+
+    --math: 210 90% 60%;
     --math-foreground: 0 0% 100%;
-    --portuguese: 340 70% 55%;
+
+    --portuguese: 340 85% 65%;
     --portuguese-foreground: 0 0% 100%;
+
+    --english: 280 85% 65%;
+    --english-foreground: 0 0% 100%;
+
+    --geo: 145 70% 55%;
+    --geo-foreground: 0 0% 100%;
+
+    --science: 25 95% 60%;
+    --science-foreground: 0 0% 100%;
+
+    --arts: 50 100% 60%;
+    --arts-foreground: 0 0% 100%;
   }
 
   * {
@@ -74,7 +76,82 @@
     font-family: 'Nunito', sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'Fredoka', sans-serif;
+  }
+}
+
+@layer components {
+
+  /* ===== TEXT GRADIENT INFANTIL ===== */
+
+  .text-gradient {
+    background: linear-gradient(90deg, #ff6ec7, #6c5ce7, #00d2ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  /* ===== CARDS ===== */
+
+  .card-hover {
+    @apply transition-all duration-300 hover:border-primary/40;
+  }
+
+  .card-hover:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+    transform: translateY(-3px);
+  }
+
+  /* ===== CONTAINER ===== */
+
+  .section-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* ===== NAV ===== */
+
+  .nav-link {
+    @apply text-portuguese hover:text-portuguese/80 transition-colors duration-200 relative font-semibold;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 w-0 h-1 rounded-full bg-primary transition-all duration-300;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+
+  .nav-link.active {
+    @apply text-portuguese;
+  }
+
+  /* ===== BOTÕES ===== */
+
+  .btn-primary {
+    @apply text-primary-foreground font-semibold px-6 py-3 rounded-2xl transition-all duration-300;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary px-6 py-3 rounded-2xl transition-all duration-300 font-semibold;
+  }
+
+  .btn-outline:hover {
+    @apply bg-primary/10;
+    transform: translateY(-1px);
   }
 }
