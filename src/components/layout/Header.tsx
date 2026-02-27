@@ -22,11 +22,11 @@ export default function Header() {
       <nav className="section-container">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 hover:text-primary transition-colors">
+          {/*  <Link to="/" className="flex items-center gap-2 hover:text-primary transition-colors">
             <span className="text-xl font-bold  text-gradient ">
               <img className="w-32 h-32" src='' />
             </span>
-          </Link>
+          </Link> */}
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
