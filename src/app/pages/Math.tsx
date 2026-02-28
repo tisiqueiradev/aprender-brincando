@@ -21,6 +21,10 @@ interface Exercise {
 
 const exercises: Exercise[] = [
   { sequence: [10, 20, 30, -1], missingIndex: 3, options: [30, 40, 25, 18] },
+  { sequence: [1, 2, 3, 4, -1], missingIndex: 4, options: [6, 9, 5, 10] },
+  { sequence: [2, 3, 4, 5, -1], missingIndex: 4, options: [6, 7, 5, 8] },
+  { sequence: [10, 11, 12, 13, -1], missingIndex: 4, options: [14, 19, 5, 10] },
+  { sequence: [100, 101, 102, 103, -1], missingIndex: 4, options: [114, 104, 105, 10] },
   { sequence: [5, 10, 15, -1], missingIndex: 3, options: [25, 20, 18] },
   { sequence: [2, 4, -1, 8], missingIndex: 2, options: [5, 6, 7] },
   { sequence: [100, 200, -1], missingIndex: 2, options: [300, 250, 400] },
