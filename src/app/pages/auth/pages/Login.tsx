@@ -47,7 +47,7 @@ export default function Login() {
       console.log(profile.role);
     }
 
-    navigate('/')
+    navigate('/home')
   }
 
   return (

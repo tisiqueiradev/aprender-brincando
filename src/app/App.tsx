@@ -11,6 +11,7 @@ import Science from "./pages/Science";
 import Arts from "./pages/Arts";
 import Resgister from "./pages/auth/pages/Register";
 import Login from "./pages/auth/pages/Login";
+import Home from './pages/Home';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/portuguese" element={<Portuguese />} />
           <Route path="/math" element={<Math />} />
           <Route path="/english" element={<English />} />
