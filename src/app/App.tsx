@@ -3,7 +3,6 @@ import './App.css'
 import { Toaster } from "../components/ui/toaster";
 
 
-import Home from "./pages/Home";
 import Math from "./pages/Math"
 import Portuguese from "./pages/Portuguese";
 import English from "./pages/English";
@@ -21,7 +20,7 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login />} />
           <Route path="/portuguese" element={<Portuguese />} />
           <Route path="/math" element={<Math />} />
           <Route path="/english" element={<English />} />
