@@ -5,6 +5,18 @@
 @tailwind utilities;
 
 @layer base {
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    overflow: hidden;
+  }
+
   :root {
     /* ===== BASE INFANTIL CLARO ===== */
 

@@ -36,7 +36,7 @@ export default function ExerciseLayout({
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="h-screen overflow-hidden flex flex-col bg-background">
       {/* Header */}
       <header className={cn(
         "px-4 py-3 flex items-center gap-3 shadow-md",

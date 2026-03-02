@@ -164,58 +164,62 @@ export default function MathExercise() {
       onNext={status === "correct" ? handleNext : undefined}
       onReset={handleReset}
     >
+      <div className="w-full max-w-lg mx-auto">
+        <h2 className="font-display text-2xl md:text-3xl font-bold text-center text-foreground mb-2">
+          Complete a sequência!
+        </h2>
+
+        <p className="text-center text-muted-foreground font-body mb-8">
+          Arraste o número correto para o espaço vazio
+        </p>
+
+      </div>
       <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-        <div className="w-full max-w-lg mx-auto">
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-center text-foreground mb-2">
-            Complete a sequência!
-          </h2>
 
-          <p className="text-center text-muted-foreground font-body mb-8">
-            Arraste o número correto para o espaço vazio
-          </p>
 
-          <div className="flex items-center justify-center gap-3 md:gap-4 flex-wrap mb-10">
-            {exercise.sequence.map((num, i) => (
-              <div key={i} className="flex items-center gap-2 md:gap-3">
-                {i > 0 && (
-                  <span className="text-muted-foreground font-display text-xl">
-                    ,
-                  </span>
-                )}
 
-                {num === -1 ? (
-                  <DropZone id="drop-zone" status={status}>
-                    {droppedValue !== null
-                      ? String(droppedValue)
-                      : undefined}
-                  </DropZone>
-                ) : (
-                  <div className="px-5 py-3 rounded-lg bg-math/10 border-2 border-math/30 font-display text-xl md:text-2xl font-bold text-math">
-                    {num}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+        <div className=" border-border p-8 rounded-md border-4 flex items-center justify-center gap-3 md:gap-4 flex-wrap mb-10">
+          {exercise.sequence.map((num, i) => (
+            <div key={i} className="flex items-center gap-2 md:gap-3">
+              {i > 0 && (
+                <span className="text-muted-foreground font-display text-xl">
+                  ,
+                </span>
+              )}
 
-          <div className="flex items-center justify-center gap-4 flex-wrap">
-            {exercise.options.map((opt) => {
-              const isDropped = droppedValue === opt;
-              if (isDropped && status === "correct") return null;
-
-              return (
-                <DraggableBlock
-                  key={opt}
-                  id={String(opt)}
-                  status={isDropped ? status : "idle"}
-                  disabled={answered && !isDropped}
-                >
-                  {opt}
-                </DraggableBlock>
-              );
-            })}
-          </div>
+              {num === -1 ? (
+                <DropZone id="drop-zone" status={status}>
+                  {droppedValue !== null
+                    ? String(droppedValue)
+                    : undefined}
+                </DropZone>
+              ) : (
+                <div className="px-5 py-3 rounded-lg bg-math/10 border-2 border-math/30 font-display text-xl md:text-2xl font-bold text-math">
+                  {num}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
+
+        <div className="flex items-center justify-center gap-4 flex-wrap">
+          {exercise.options.map((opt) => {
+            const isDropped = droppedValue === opt;
+            if (isDropped && status === "correct") return null;
+
+            return (
+              <DraggableBlock
+                key={opt}
+                id={String(opt)}
+                status={isDropped ? status : "idle"}
+                disabled={answered && !isDropped}
+              >
+                {opt}
+              </DraggableBlock>
+            );
+          })}
+        </div>
+
       </DndContext>
     </ExerciseLayout>
   );
