@@ -1,9 +1,9 @@
 import ExerciseLayout from "../../components/layout/ExerciseLayout";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   DndContext,
   type DragEndEvent,
-  PointerSensor,
+  MouseSensor,
   TouchSensor,
   useSensor,
   useSensors,
@@ -12,12 +12,7 @@ import { playSuccessSound, playErrorSound } from "../../lib/souds";
 import { speak } from "../../lib/narrator";
 import DraggableBlock from "../../components/DraggableBlock";
 import DropZone from "../../components/DropZone";
-
-interface Exercise {
-  sequence: number[];
-  missingIndex: number;
-  options: number[];
-}
+import { getCorrectAnswer, shuffleArray, type Exercise } from "./math.utils";
 
 const exercises: Exercise[] = [
   { sequence: [10, 20, 30, -1], missingIndex: 3, options: [30, 40, 25, 18] },
@@ -32,16 +27,6 @@ const exercises: Exercise[] = [
   { sequence: [50, 60, 70, -1], missingIndex: 3, options: [90, 80, 75] },
 ];
 
-// 🔀 Função para embaralhar (Fisher-Yates)
-function shuffleArray<T>(array: T[]): T[] {
-  const newArray = [...array];
-  for (let i = newArray.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-  }
-  return newArray;
-}
-
 export default function MathExercise() {
   const [shuffledExercises, setShuffledExercises] = useState(() =>
     shuffleArray(exercises)
@@ -54,9 +39,9 @@ export default function MathExercise() {
   const [lives, setLives] = useState(5);
 
   const sensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+    useSensor(MouseSensor, { activationConstraint: { distance: 8 } }),
     useSensor(TouchSensor, {
-      activationConstraint: { delay: 100, tolerance: 5 },
+      activationConstraint: { delay: 0, tolerance: 8 },
     })
   );
 
@@ -73,24 +58,6 @@ export default function MathExercise() {
     );
     speak(`Complete a sequência de números: ${parts.join(", ")}`);
   }, [currentIndex, isComplete, isGameOver, exercise]);
-
-  const getCorrectAnswer = useCallback((ex: Exercise) => {
-    const seq = ex.sequence;
-    const idx = ex.missingIndex;
-
-    // pegar dois valores conhecidos com índice
-    const known = seq
-      .map((value, index) => ({ value, index }))
-      .filter((item) => item.value !== -1);
-
-    const first = known[0];
-    const second = known[1];
-
-    // calcular passo real considerando distância entre índices
-    const step = (second.value - first.value) / (second.index - first.index);
-
-    return first.value + step * idx;
-  }, []);
 
   const handleDragEnd = (event: DragEndEvent) => {
     if (answered || !event.over) return;
@@ -164,12 +131,12 @@ export default function MathExercise() {
       onNext={status === "correct" ? handleNext : undefined}
       onReset={handleReset}
     >
-      <div className="w-full max-w-lg mx-auto">
-        <h2 className="font-display text-2xl md:text-3xl font-bold text-center text-foreground mb-2">
+      <div className="w-full max-w-xl mx-auto px-1">
+        <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-center text-foreground mb-2">
           Complete a sequência!
         </h2>
 
-        <p className="text-center text-muted-foreground font-body mb-8">
+        <p className="text-center text-sm sm:text-base text-muted-foreground font-body mb-6 sm:mb-8">
           Arraste o número correto para o espaço vazio
         </p>
 
@@ -178,11 +145,11 @@ export default function MathExercise() {
 
 
 
-        <div className=" border-border p-8 rounded-md border-4 flex items-center justify-center gap-3 md:gap-4 flex-wrap mb-10">
+        <div className="border-border p-4 sm:p-6 md:p-8 rounded-md border-4 flex items-center justify-center gap-2 sm:gap-3 md:gap-4 flex-wrap mb-8 sm:mb-10">
           {exercise.sequence.map((num, i) => (
             <div key={i} className="flex items-center gap-2 md:gap-3">
               {i > 0 && (
-                <span className="text-muted-foreground font-display text-xl">
+                <span className="text-muted-foreground font-display text-lg sm:text-xl">
                   ,
                 </span>
               )}
@@ -194,7 +161,7 @@ export default function MathExercise() {
                     : undefined}
                 </DropZone>
               ) : (
-                <div className="px-5 py-3 rounded-lg bg-math/10 border-2 border-math/30 font-display text-xl md:text-2xl font-bold text-math">
+                <div className="px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg bg-math/10 border-2 border-math/30 font-display text-lg sm:text-xl md:text-2xl font-bold text-math">
                   {num}
                 </div>
               )}
@@ -202,7 +169,10 @@ export default function MathExercise() {
           ))}
         </div>
 
-        <div className="flex items-center justify-center gap-4 flex-wrap">
+        <div
+          className="flex items-center justify-center gap-3 sm:gap-4 flex-wrap px-3 py-4 sm:px-4 sm:py-5 pb-2 touch-none overscroll-contain select-none border-2 border-red-500 rounded-xl"
+          onTouchMove={(e) => e.preventDefault()}
+        >
           {exercise.options.map((opt) => {
             const isDropped = droppedValue === opt;
             if (isDropped && status === "correct") return null;

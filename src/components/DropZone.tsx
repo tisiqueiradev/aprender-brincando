@@ -23,10 +23,10 @@ const DropZone = ({
       ref={setNodeRef}
       className={cn(
         // Estrutura base
-        "min-w-[90px] min-h-[64px] px-6 py-4",
+        "min-w-[80px] sm:min-w-[90px] min-h-[56px] sm:min-h-[64px] px-4 sm:px-6 py-3 sm:py-4",
         "rounded-xl border-2 border-dashed",
         "flex items-center justify-center",
-        "font-display text-xl md:text-2xl font-bold",
+        "font-display text-lg sm:text-xl md:text-2xl font-bold",
         "transition-all duration-200 ease-out",
         "select-none",
 

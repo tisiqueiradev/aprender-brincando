@@ -51,29 +51,29 @@ export default function ForgotPassword() {
   }
 
   return (
-    <div className="max-w-4xl flex items-center mx-auto md:min-h-screen p-4">
-      <div className="grid md:grid-cols-3 items-center [box-shadow:0_2px_10px_-3px_rgba(14,14,14,0.3)] rounded-xl overflow-hidden">
-        <div className="max-md:order-1 flex flex-col justify-center md:space-y-16 space-y-8 max-md:mt-16 min-h-full bg-gradient-to-l from-math to-math lg:px-8 px-4 py-4">
+    <div className="max-w-4xl flex items-center mx-auto min-h-[100dvh] p-4">
+      <div className="grid md:grid-cols-3 items-center [box-shadow:0_2px_10px_-3px_rgba(14,14,14,0.3)] rounded-xl overflow-hidden bg-card">
+        <div className="max-md:order-1 flex flex-col justify-center md:space-y-16 space-y-8 max-md:mt-8 min-h-full bg-gradient-to-l from-math to-math lg:px-8 px-4 py-4">
           <div>
-            <h3 className="text-geo text-lg">Recupere sua conta</h3>
-            <p className="text-primary-foreground mt-3 leading-relaxed">
+            <h3 className="text-geo text-base sm:text-lg">Recupere sua conta</h3>
+            <p className="text-primary-foreground text-sm sm:text-base mt-3 leading-relaxed">
               {emailSent
                 ? "Crie sua nova senha para voltar a acessar a plataforma."
                 : "Informe seu e-mail para simularmos o envio do link de recuperação."}
             </p>
           </div>
           <div>
-            <h3 className="text-geo text-lg">Processo rápido e seguro</h3>
-            <p className="text-primary-foreground mt-3 leading-relaxed">
+            <h3 className="text-geo text-base sm:text-lg">Processo rápido e seguro</h3>
+            <p className="text-primary-foreground text-sm sm:text-base mt-3 leading-relaxed">
               Mantemos o mesmo padrão das telas de autenticação para facilitar sua experiência.
             </p>
           </div>
         </div>
 
         {!emailSent ? (
-          <form onSubmit={handleFakeEmailSend} className="md:col-span-2 w-full py-6 px-6 sm:px-14 max-w-lg mx-auto">
+          <form onSubmit={handleFakeEmailSend} className="md:col-span-2 w-full py-6 px-5 sm:px-10 max-w-lg mx-auto">
             <div className="mb-8">
-              <h1 className="text-geo text-2xl font-bold">Recuperar senha</h1>
+              <h1 className="text-geo text-xl sm:text-2xl md:text-3xl font-bold">Recuperar senha</h1>
             </div>
 
             <div className="space-y-6">
@@ -82,7 +82,7 @@ export default function ForgotPassword() {
                   name="email"
                   type="email"
                   required
-                  className="text-slate-900 bg-white border border-slate-300 w-full text-sm pl-4 pr-8 py-2.5 rounded-md outline-blue-500"
+                  className="text-slate-900 bg-white border border-slate-300 w-full text-sm sm:text-base pl-4 pr-8 py-2.5 sm:py-3 rounded-md outline-blue-500"
                   placeholder="e-mail"
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
@@ -102,20 +102,20 @@ export default function ForgotPassword() {
             </div>
 
             <div className="mt-8">
-              <button type="submit" disabled={loading} className="w-full py-2.5 px-4 tracking-wider text-sm rounded-md text-geo-foreground bg-geo hover:bg-geo/90 focus:outline-none cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed">
+              <button type="submit" disabled={loading} className="w-full py-2.5 sm:py-3 px-4 tracking-wider text-sm sm:text-base rounded-md text-geo-foreground bg-geo hover:bg-geo/90 focus:outline-none cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed">
                 {loading ? "Enviando..." : "Enviar e-mail de recuperação"}
               </button>
             </div>
-            <p className="text-slate-600 text-sm mt-6 text-center">
+            <p className="text-slate-600 text-sm sm:text-base mt-6 text-center">
               Lembrou sua senha?
               <a href="/login" className="text-blue-600 font-medium hover:underline ml-1">Acessar conta</a>
             </p>
           </form>
         ) : (
-          <form onSubmit={handlePasswordReset} className="md:col-span-2 w-full py-6 px-6 sm:px-14 max-w-lg mx-auto">
+          <form onSubmit={handlePasswordReset} className="md:col-span-2 w-full py-6 px-5 sm:px-10 max-w-lg mx-auto">
             <div className="mb-8">
-              <h1 className="text-geo text-2xl font-bold">Defina sua nova senha</h1>
-              <p className="text-slate-600 text-sm mt-2">E-mail: {email}</p>
+              <h1 className="text-geo text-xl sm:text-2xl md:text-3xl font-bold">Defina sua nova senha</h1>
+              <p className="text-slate-600 text-sm sm:text-base mt-2">E-mail: {email}</p>
             </div>
 
             <div className="space-y-6">
@@ -125,7 +125,7 @@ export default function ForgotPassword() {
                   type="password"
                   required
                   minLength={6}
-                  className="text-slate-900 bg-white border border-slate-300 w-full text-sm pl-4 pr-8 py-2.5 rounded-md outline-blue-500"
+                  className="text-slate-900 bg-white border border-slate-300 w-full text-sm sm:text-base pl-4 pr-8 py-2.5 sm:py-3 rounded-md outline-blue-500"
                   placeholder="nova senha"
                   onChange={(e) => setNewPassword(e.target.value)}
                   value={newPassword}
@@ -137,7 +137,7 @@ export default function ForgotPassword() {
             </div>
 
             <div className="mt-8">
-              <button type="submit" className="w-full py-2.5 px-4 tracking-wider text-sm rounded-md text-geo-foreground bg-geo hover:bg-geo/90 focus:outline-none cursor-pointer">
+              <button type="submit" className="w-full py-2.5 sm:py-3 px-4 tracking-wider text-sm sm:text-base rounded-md text-geo-foreground bg-geo hover:bg-geo/90 focus:outline-none cursor-pointer">
                 Salvar nova senha
               </button>
             </div>

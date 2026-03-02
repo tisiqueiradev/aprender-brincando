@@ -9,12 +9,13 @@
   html,
   body,
   #root {
-    height: 100%;
+    min-height: 100%;
   }
 
   body {
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   :root {
@@ -86,6 +87,22 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Nunito', sans-serif;
+  }
+
+  html {
+    font-size: 15px;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      font-size: 16px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      font-size: 17px;
+    }
   }
 
   h1,

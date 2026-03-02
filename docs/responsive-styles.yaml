@@ -1,0 +1,104 @@
+meta:
+  project: aprender-brincando
+  updated_at: 2026-03-02
+  strategy: mobile-first
+  objective:
+    - garantir scroll vertical em smartphone/tablet, incluindo paisagem
+    - manter tipografia proporcional por dispositivo
+    - estabilizar drag-and-drop para touch e desktop
+
+breakpoints:
+  smartphone:
+    width: "0px-767px"
+    root_font_size: "15px"
+  tablet:
+    width: "768px-1023px"
+    root_font_size: "16px"
+  desktop:
+    width: ">=1024px"
+    root_font_size: "17px"
+
+viewport_and_scroll:
+  global:
+    root:
+      width: "100%"
+      min_height: "100%"
+    body:
+      overflow_x: hidden
+      overflow_y: auto
+  dynamic_viewport_units:
+    auth_pages: "min-h-[100dvh]"
+    home_page: "min-h-[100dvh]"
+    exercise_layout:
+      mobile: "min-h-[100dvh] + overflow-y-auto"
+      desktop: "h-screen + overflow-hidden"
+  landscape_behavior:
+    mobile_tablet:
+      enabled_vertical_scroll: true
+      rationale: "evitar corte de conteúdo ao girar para horizontal"
+
+typography_scale:
+  headings:
+    auth_h1: "text-xl sm:text-2xl md:text-3xl"
+    math_h2: "text-xl sm:text-2xl md:text-3xl"
+    feedback_titles: "text-2xl sm:text-3xl"
+  body:
+    auth_text: "text-sm sm:text-base"
+    hints_and_instructions: "text-sm sm:text-base"
+  exercise_header:
+    title: "text-sm sm:text-base md:text-xl"
+    lives: "text-sm sm:text-base md:text-xl"
+    progress_counter: "text-xs sm:text-sm"
+
+drag_and_drop:
+  sensors:
+    desktop:
+      type: MouseSensor
+      activation_constraint:
+        distance: 8
+    mobile_touch:
+      type: TouchSensor
+      activation_constraint:
+        delay_ms: 150
+        tolerance_px: 10
+  interaction:
+    draggable_touch_action: manipulation
+    expected_behavior:
+      - arrastar funciona em smartphone e tablet
+      - gesto evita ativação acidental com toque curto
+      - tela continua rolável fora da área de arraste
+  components:
+    draggable_block:
+      padding: "px-4 sm:px-5 py-2.5 sm:py-3"
+      font: "text-lg sm:text-xl md:text-2xl"
+    drop_zone:
+      min_size: "min-w-[80px] sm:min-w-[90px], min-h-[56px] sm:min-h-[64px]"
+      font: "text-lg sm:text-xl md:text-2xl"
+
+layout_components:
+  exercise_layout:
+    wrapper: "min-h-[100dvh] md:h-screen"
+    main_spacing: "gap-5 md:gap-6"
+    action_buttons: "text-base sm:text-lg"
+  auth_cards:
+    container: "bg-card rounded-2xl shadow-md"
+    input_size: "text-sm sm:text-base + py-2.5 sm:py-3"
+    button_size: "text-sm sm:text-base + py-2.5 sm:py-3"
+  home_menu:
+    menu_button:
+      width: "w-52 sm:w-56"
+      font: "text-base sm:text-lg"
+      padding: "p-6 sm:p-8"
+
+files_changed_reference:
+  - src/index.css
+  - src/app/App.css
+  - src/components/layout/ExerciseLayout.tsx
+  - src/app/pages/Math.tsx
+  - src/components/DraggableBlock.tsx
+  - src/components/DropZone.tsx
+  - src/app/pages/auth/pages/Login.tsx
+  - src/app/pages/auth/pages/Register.tsx
+  - src/app/pages/auth/pages/ForgotPassword.tsx
+  - src/app/pages/Home.tsx
+  - src/components/theme/index.tsx

@@ -5,9 +5,9 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div className="flex items-center justify-center min-h-screen my-8">
+      <div className="flex items-center justify-center min-h-[100dvh] py-24 px-4">
 
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-3 sm:gap-4">
           <Menu
             label="Português"
             themeColor="portuguese"

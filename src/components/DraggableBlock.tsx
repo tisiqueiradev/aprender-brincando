@@ -27,7 +27,7 @@ const DraggableBlock = ({ id, children, status = "idle", disabled = false }: Dra
       {...listeners}
       {...attributes}
       className={cn(
-        "px-5 py-3 rounded-lg font-display text-xl md:text-2xl font-bold cursor-grab active:cursor-grabbing select-none transition-all duration-200",
+        "px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg font-display text-lg sm:text-xl md:text-2xl font-bold cursor-grab active:cursor-grabbing select-none transition-all duration-200",
         "bg-card shadow-lg border-2 hover:shadow-xl",
         isDragging && "opacity-70 scale-105 shadow-2xl z-50",
         status === "idle" && "border-border text-foreground",
