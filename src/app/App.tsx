@@ -12,6 +12,7 @@ import Arts from "./pages/Arts";
 import Resgister from "./pages/auth/pages/Register";
 import Login from "./pages/auth/pages/Login";
 import Home from './pages/Home';
+import ForgotPassword from "./pages/auth/pages/ForgotPassword";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/arts" element={<Arts />} />
           <Route path="/register" element={<Resgister />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot" element={<ForgotPassword />} />
         </Routes>
       </BrowserRouter>
     </>

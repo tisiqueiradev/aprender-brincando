@@ -93,6 +93,9 @@ export default function Login() {
           Entrar
         </button>
       </div>
+      <p className="text-slate-600 text-sm mt-4 text-center">
+        <a href="/forgot" className="text-blue-600 font-medium hover:underline">Esqueci minha senha</a>
+      </p>
       <p className="text-slate-600 text-sm mt-6 text-center">Não tem uma conta? <a href="/register" className="text-blue-600 font-medium hover:underline ml-1">Criar cadastro</a></p>
     </form>
   )
