@@ -42,14 +42,14 @@ export default function ExerciseLayout({
         "px-4 py-3 flex items-center gap-3 shadow-md",
         themeStyles[themeColor], "w-full h-10"
       )}>
-        <button onClick={() => navigate("/")} className="p-2 rounded-lg hover:bg-white/20 transition-colors">
-          <ArrowLeft className="w-6 h-6" />
+        <button onClick={() => navigate("/home")} className="p-0 md:p-2rounded-lg hover:bg-white/20 transition-colors">
+          <ArrowLeft className="w-6 h-6 md:w-6 md:h-6" />
         </button>
-        <h1 className="font-display text-xl  flex-1">{title}</h1>
+        <h1 className="font-display text-sm md:text-xl  flex-1">{title}</h1>
         {/* Lives */}
         <div className="flex items-center gap-0.5 mr-2">
           {Array.from({ length: maxLives }).map((_, i) => (
-            <span key={i} className={cn("text-xl transition-all duration-300", i < lives ? "scale-100" : "scale-75 grayscale opacity-40")}>
+            <span key={i} className={cn("text-sm md:text-xl transition-all duration-300", i < lives ? "scale-100" : "scale-75 grayscale opacity-40")}>
               {i < lives ? "❤️" : "🖤"}
             </span>
           ))}
@@ -72,7 +72,7 @@ export default function ExerciseLayout({
       </div>
 
       {/* Content */}
-      <main className="flex-1 flex flex-col items-center justify-center p-4 md:p-8 gap-6">
+      <main className="flex-1 flex flex-col items-center justify-start md:justify-center p-4 md:p-8 gap-6">
         {isGameOver ? (
           <div className="text-center animate-bounce-in">
             <span className="text-7xl block mb-4">😢</span>
