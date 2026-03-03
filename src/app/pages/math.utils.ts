@@ -1,7 +1,7 @@
 export interface Exercise {
   sequence: number[];
   missingIndex: number;
-  fase: number;
+  fase?: number;
   options: number[];
 
 }

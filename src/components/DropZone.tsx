@@ -6,6 +6,8 @@ interface DropZoneProps {
   children?: React.ReactNode;
   status?: "idle" | "correct" | "wrong";
   label?: string;
+  className?: string;
+  disableHoverScale?: boolean;
 }
 
 const DropZone = ({
@@ -13,6 +15,8 @@ const DropZone = ({
   children,
   status = "idle",
   label,
+  className,
+  disableHoverScale = false,
 }: DropZoneProps) => {
   const { isOver, setNodeRef } = useDroppable({ id });
 
@@ -37,7 +41,9 @@ const DropZone = ({
         // Quando está sendo arrastado por cima
         isOver &&
         status === "idle" &&
-        "border-primary bg-primary/10 scale-110 shadow-md",
+        (disableHoverScale
+          ? "border-primary bg-primary/10 shadow-md"
+          : "border-primary bg-primary/10 scale-110 shadow-md"),
 
         // Acertou
         status === "correct" &&
@@ -49,7 +55,8 @@ const DropZone = ({
 
         // Quando vazio
         isEmpty &&
-        "text-muted-foreground/40 italic animate-pulse"
+        "text-muted-foreground/40 italic animate-pulse",
+        className
       )}
     >
       {children ??

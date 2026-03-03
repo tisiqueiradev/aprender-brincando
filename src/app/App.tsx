@@ -12,8 +12,9 @@ import Login from "./pages/auth/pages/Login";
 import Home from './pages/Home';
 import ForgotPassword from "./pages/auth/pages/ForgotPassword";
 import Scoreboard from "./pages/Scoreboard";
-import MenuMath from "./pages/Math/Index";
 import Math from "./pages/Math/Math"
+import MathNumberSequence from "./pages/Math/MathNumberSequence";
+import MathNumberTable from "./pages/Math/MathNumberTable";
 
 
 function App() {
@@ -26,8 +27,9 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/portuguese" element={<Portuguese />} />
-          <Route path="/math/index" element={<MenuMath />} />
-          <Route path="/math/" element={<Math />} />
+          <Route path="/math" element={<Math />} />
+          <Route path="/math/number-sequence" element={<MathNumberSequence />} />
+          <Route path="/math/number-table" element={<MathNumberTable />} />
           <Route path="/english" element={<English />} />
           <Route path="/geo" element={<Geo />} />
           <Route path="/science" element={<Science />} />
