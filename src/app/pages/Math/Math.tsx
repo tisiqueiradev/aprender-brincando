@@ -1,4 +1,4 @@
-import ExerciseLayout from "../../components/layout/ExerciseLayout";
+import ExerciseLayout from "../../../components/layout/ExerciseLayout";
 import { useRef, useState, useEffect } from "react";
 import {
   DndContext,
@@ -11,25 +11,25 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { playSuccessSound, playErrorSound } from "../../lib/souds";
-import { speak, stopNarration } from "../../lib/narrator";
-import DraggableBlock from "../../components/DraggableBlock";
-import DropZone from "../../components/DropZone";
-import PrintExercisesPdf from "../../components/PrintExercisesPdf";
-import { getCorrectAnswer, shuffleArray, type Exercise } from "./math.utils";
-import { addScoreRecord } from "../../lib/scoreboard";
+import { playSuccessSound, playErrorSound } from "../../../lib/souds";
+import { speak, stopNarration } from "../../../lib/narrator";
+import DraggableBlock from "../../../components/DraggableBlock";
+import DropZone from "../../../components/DropZone";
+import PrintExercisesPdf from "../../../components/PrintExercisesPdf";
+import { getCorrectAnswer, shuffleArray, type Exercise } from ".././math.utils";
+import { addScoreRecord } from "../../../lib/scoreboard";
 
 const exercises: Exercise[] = [
-  { sequence: [10, 20, 30, -1], missingIndex: 3, options: [30, 40, 25, 18] },
-  { sequence: [1, 2, 3, 4, -1], missingIndex: 4, options: [6, 9, 5, 10] },
-  { sequence: [2, 3, 4, 5, -1], missingIndex: 4, options: [6, 7, 5, 8] },
-  { sequence: [10, 11, 12, 13, -1], missingIndex: 4, options: [14, 19, 5, 10] },
-  { sequence: [100, 101, 102, 103, -1], missingIndex: 4, options: [114, 104, 105, 10] },
-  { sequence: [5, 10, 15, -1], missingIndex: 3, options: [25, 20, 18] },
-  { sequence: [2, 4, -1, 8], missingIndex: 2, options: [5, 6, 7] },
-  { sequence: [100, 200, -1], missingIndex: 2, options: [300, 250, 400] },
-  { sequence: [1, -1, 3, 4], missingIndex: 1, options: [5, 2, 0] },
-  { sequence: [50, 60, 70, -1], missingIndex: 3, options: [90, 80, 75] },
+  { sequence: [1, 2, 3, 4, -1], fase: 1, missingIndex: 4, options: [6, 9, 5, 10] },
+  { sequence: [2, 3, 4, 5, -1], fase: 1, missingIndex: 4, options: [6, 7, 5, 8] },
+  { sequence: [1, -1, 3, 4], fase: 1, missingIndex: 1, options: [5, 2, 0] },
+  { sequence: [10, 11, 12, 13, -1], fase: 1, missingIndex: 4, options: [14, 19, 5, 10] },
+  { sequence: [10, 20, 30, -1], fase: 1, missingIndex: 3, options: [30, 40, 25, 18] },
+  { sequence: [100, 101, 102, 103, -1], fase: 1, missingIndex: 4, options: [114, 104, 105, 10] },
+  { sequence: [100, 200, -1], fase: 1, missingIndex: 2, options: [300, 250, 400] },
+  { sequence: [50, 60, 70, -1], fase: 1, missingIndex: 3, options: [90, 80, 75] },
+  { sequence: [5, 10, 15, -1], fase: 1, missingIndex: 3, options: [25, 20, 18] },
+  { sequence: [2, 4, -1, 8], fase: 1, missingIndex: 2, options: [5, 6, 7] },
 ];
 
 export default function MathExercise() {
@@ -190,7 +190,7 @@ export default function MathExercise() {
       onReset={handleReset}
     >
       <div className="w-full max-w-xl mx-auto px-1">
-        <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-center text-foreground mb-2">
+        <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-center text-math mb-2">
           Complete a sequência!
         </h2>
 
@@ -212,10 +212,10 @@ export default function MathExercise() {
       >
         <div
           ref={dragBoundsRef}
-          className="w-full max-w-3xl mx-auto border-2 border-red-500 rounded-xl px-3 py-4 sm:px-4 sm:py-5 touch-none overscroll-contain select-none"
+          className="w-full max-w-3xl mx-auto border-2 border-text-math rounded-xl px-3 py-4 sm:px-4 sm:py-5 touch-none overscroll-contain select-none"
           onTouchMove={(e) => e.preventDefault()}
         >
-          <div className="border-border p-4 sm:p-6 md:p-8 rounded-md border-4 flex items-center justify-center gap-2 sm:gap-3 md:gap-4 flex-wrap mb-8 sm:mb-10">
+          <div className="border-border p-4 sm:p-6 md:p-8  flex items-center justify-center gap-2 sm:gap-3 md:gap-4 flex-wrap mb-8 sm:mb-10">
             {exercise.sequence.map((num, i) => (
               <div key={i} className="flex items-center gap-2 md:gap-3">
                 {i > 0 && (

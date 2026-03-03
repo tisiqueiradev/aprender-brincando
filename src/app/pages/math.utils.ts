@@ -1,7 +1,9 @@
 export interface Exercise {
   sequence: number[];
   missingIndex: number;
+  fase: number;
   options: number[];
+
 }
 
 export function shuffleArray<T>(array: T[]): T[] {

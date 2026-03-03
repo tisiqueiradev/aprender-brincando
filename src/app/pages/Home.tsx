@@ -44,7 +44,7 @@ export default function Home() {
           <Menu
             label="Matemática"
             themeColor="math"
-            to="/math"
+            to="/math/index"
           />
 
           <Menu

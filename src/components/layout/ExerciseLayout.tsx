@@ -57,7 +57,7 @@ export default function ExerciseLayout({
           <button
             onClick={() => {
               stopNarration();
-              navigate("/home");
+              navigate(`/${themeColor}/index`);
             }}
             className="p-1 sm:p-2 rounded-lg hover:bg-white/20 transition-colors"
           >
