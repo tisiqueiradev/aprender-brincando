@@ -2,6 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { cn } from "../../lib/utils";
 import type { ThemeColor } from '../theme';
+import { stopNarration } from "../../lib/narrator";
 
 
 interface ExerciseLayoutProps {
@@ -15,6 +16,7 @@ interface ExerciseLayoutProps {
   onReset?: () => void;
   isComplete?: boolean;
   isGameOver?: boolean;
+  finalScore?: number;
 }
 
 const maxLives = 5;
@@ -37,7 +39,8 @@ export default function ExerciseLayout({
   onNext,
   onReset,
   isComplete,
-  isGameOver
+  isGameOver,
+  finalScore
 
 }: ExerciseLayoutProps) {
   const navigate = useNavigate();
@@ -51,7 +54,13 @@ export default function ExerciseLayout({
           "w-full min-h-12 sm:min-h-14 rounded-2xl sm:rounded-none",
           themeHeaderStyles[themeColor]
         )}>
-          <button onClick={() => navigate("/home")} className="p-1 sm:p-2 rounded-lg hover:bg-white/20 transition-colors">
+          <button
+            onClick={() => {
+              stopNarration();
+              navigate("/home");
+            }}
+            className="p-1 sm:p-2 rounded-lg hover:bg-white/20 transition-colors"
+          >
             <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
           <h1 className="font-display text-sm sm:text-base md:text-xl flex-1">{title}</h1>
@@ -88,6 +97,11 @@ export default function ExerciseLayout({
             <span className="text-7xl block mb-4">😢</span>
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-destructive mb-2">Game Over!</h2>
             <p className="font-body text-base sm:text-lg text-muted-foreground mb-6">Você perdeu todas as vidas! Tente novamente!</p>
+            {typeof finalScore === "number" && (
+              <p className="font-body text-sm sm:text-base text-muted-foreground mb-6">
+                Pontuação: <strong>{finalScore}</strong>
+              </p>
+            )}
             <div className="flex gap-3 justify-center flex-wrap">
               <button
                 onClick={onReset}
@@ -105,6 +119,12 @@ export default function ExerciseLayout({
               >
                 Início
               </button>
+              <button
+                onClick={() => navigate("/scoreboard")}
+                className="px-5 sm:px-6 py-3 rounded-xl font-display font-bold text-base sm:text-lg bg-foreground text-background transition-all hover:scale-105"
+              >
+                Ver placar
+              </button>
             </div>
           </div>
         ) : isComplete ? (
@@ -115,6 +135,11 @@ export default function ExerciseLayout({
             <p className="font-body text-sm sm:text-base text-muted-foreground mb-6">
               Vidas restantes: {Array.from({ length: lives }).map((_, i) => <span key={i}>❤️</span>)}
             </p>
+            {typeof finalScore === "number" && (
+              <p className="font-body text-sm sm:text-base text-muted-foreground mb-6">
+                Pontuação: <strong>{finalScore}</strong>
+              </p>
+            )}
             <div className="flex gap-3 justify-center flex-wrap">
               <button
                 onClick={onReset}
@@ -131,6 +156,12 @@ export default function ExerciseLayout({
                 className="px-5 sm:px-6 py-3 rounded-xl font-display font-bold text-base sm:text-lg bg-muted text-foreground transition-all hover:scale-105"
               >
                 Início
+              </button>
+              <button
+                onClick={() => navigate("/scoreboard")}
+                className="px-5 sm:px-6 py-3 rounded-xl font-display font-bold text-base sm:text-lg bg-foreground text-background transition-all hover:scale-105"
+              >
+                Ver placar
               </button>
             </div>
           </div>

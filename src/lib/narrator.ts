@@ -1,9 +1,13 @@
+export const stopNarration = () => {
+  if (!("speechSynthesis" in window)) return;
+  window.speechSynthesis.cancel();
+};
+
 export const speak = (text: string) => {
   if (!("speechSynthesis" in window)) return;
 
   const synth = window.speechSynthesis;
-
-  synth.cancel();
+  stopNarration();
 
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = "pt-BR";

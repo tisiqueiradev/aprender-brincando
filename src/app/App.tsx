@@ -13,6 +13,7 @@ import Resgister from "./pages/auth/pages/Register";
 import Login from "./pages/auth/pages/Login";
 import Home from './pages/Home';
 import ForgotPassword from "./pages/auth/pages/ForgotPassword";
+import Scoreboard from "./pages/Scoreboard";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/register" element={<Resgister />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot" element={<ForgotPassword />} />
+          <Route path="/scoreboard" element={<Scoreboard />} />
         </Routes>
       </BrowserRouter>
     </>

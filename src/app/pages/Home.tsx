@@ -1,7 +1,34 @@
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/layout/Header";
 import Menu from "../../components/layout/Menu";
+import { supabase } from "../../lib/supabase";
+import { CircleUserRoundIcon } from 'lucide-react'
 
 export default function Home() {
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (!menuRef.current) return;
+      if (!menuRef.current.contains(event.target as Node)) {
+        setIsUserMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate("/login");
+  };
+
   return (
     <>
       <Header />
@@ -49,7 +76,26 @@ export default function Home() {
 
 
 
+
         </div>
+      </div>
+
+      <div ref={menuRef} className="fixed bottom-4 left-4 z-50">
+        {isUserMenuOpen && (
+          <div className="mb-2 w-44 rounded-xl border border-border bg-card shadow-lg p-2">
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-foreground hover:bg-muted"
+            >
+              Fazer logoff
+            </button>
+          </div>
+        )}
+
+
+        <CircleUserRoundIcon className="w-12 h-12 text-english" onClick={() => setIsUserMenuOpen((prev) => !prev)} />
+
       </div>
     </>
   )

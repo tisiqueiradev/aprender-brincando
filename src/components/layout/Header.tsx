@@ -11,6 +11,7 @@ const navLinks = [
   { path: '/geo', label: 'Geografia', color: 'text-geo' },
   { path: '/science', label: 'Ciência', color: 'text-science' },
   { path: '/arts', label: 'Artes', color: 'text-arts' },
+  { path: '/scoreboard', label: 'Placar', color: 'ext-geo' },
   { path: '/contact', label: 'Contato', color: 'text-muted-foreground ' },
 ];
 export default function Header() {
