@@ -7,6 +7,7 @@ export default function Resgister() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const { toast } = useToast();
 
   const navigate = useNavigate();
@@ -44,10 +45,28 @@ export default function Resgister() {
       return
     };
 
+    // 🔥 AGUARDAR UM POUCO PARA GARANTIR QUE O TRIGGER CRIOU O PROFILE
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("access_code")
+      .eq("id", data.user.id)
+      .single();
+
+    if (profileError) {
+      console.log("Erro ao buscar profile:", profileError.message);
+    } else {
+      console.log("ACCESS CODE:", profile?.access_code);
+    }
+
+
     toast({
       title: "Conta criada com sucesso!",
       description: "Verifique seu e-mail para confirmar a conta"
     });
+
+
 
     navigate("/login");
   }
@@ -55,8 +74,6 @@ export default function Resgister() {
 
 
   return (
-
-
 
     <div className="max-w-4xl flex items-center mx-auto min-h-[100dvh] p-4">
       <div className="grid md:grid-cols-3 items-center [box-shadow:0_2px_10px_-3px_rgba(14,14,14,0.3)] rounded-xl overflow-hidden bg-card">
